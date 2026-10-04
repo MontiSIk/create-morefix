@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "all": "catwalk_orientation:block/copycat_industrial_iron_bars_overlay"
+  }
+}
