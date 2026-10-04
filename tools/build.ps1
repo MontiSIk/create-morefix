@@ -1,6 +1,6 @@
 param(
-    [string]$Profile = (Join-Path $env:APPDATA 'ModrinthApp/profiles/Kriate'),
-    [string]$Libraries = (Join-Path $env:APPDATA 'ModrinthApp/meta/libraries'),
+    [Parameter(Mandatory=$true)][string]$Profile,
+    [Parameter(Mandatory=$true)][string]$Libraries,
     [string]$Jdk = 'C:\Program Files\Java\jdk-21.0.11'
 )
 $ErrorActionPreference = 'Stop'

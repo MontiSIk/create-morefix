@@ -1,9 +1,12 @@
+import argparse
 from pathlib import Path
 from io import BytesIO
 from zipfile import ZipFile
 from PIL import Image
 
-jar = Path(r'C:/Users/sstei/AppData/Roaming/ModrinthApp/profiles/Kriate/mods/create-1.21.1-6.0.10.jar')
+parser = argparse.ArgumentParser()
+parser.add_argument('create_jar', type=Path)
+jar = parser.parse_args().create_jar
 out = Path(__file__).resolve().parent.parent / 'src/main/resources/assets/catwalk_orientation/textures/block'
 out.mkdir(parents=True, exist_ok=True)
 with ZipFile(jar) as archive:

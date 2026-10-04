@@ -9,7 +9,7 @@
 - Расширенные покрытия Copycats, включая прутья и решётки с панелью; сохранение и отображение покрытий в схемах и списке материалов.
 - Горизонтальный выходной вал каретки, движение и стыковка саблевелов, сохранение настроек беспроводной связи.
 
-[Страница мода на Modrinth](https://modrinth.com/project/create-morefix) · [Сообщить об ошибке](https://github.com/MontiSIk/create-morefix/issues) · [Связаться в Discord](https://discord.com/users/307551324956917760)
+[Сообщить об ошибке](https://github.com/MontiSIk/create-morefix/issues) · [Связаться в Discord](https://discord.com/users/307551324956917760)
 
 ## Зависимости
 
@@ -17,12 +17,12 @@ Minecraft 1.21.1, NeoForge 21.1.228+, Create 6.0.10, Create Deco 2.1.3, Copycats
 
 ## Сборка исходников 1.5.12
 
-Нужны Windows, PowerShell 7 и JDK 21. Скрипт использует зависимости из установленного профиля Modrinth; Gradle-проект пока не предоставляется.
+Нужны Windows, PowerShell 7 и JDK 21. Скрипт использует зависимости из установленного игрового профиля; Gradle-проект пока не предоставляется.
 
 Для текущей сборки подготовьте Create, Create Deco, Copycats, Forgematica 0.4.2, MaFgLib 0.4.3, Sable 2.0.3 и Create: Simulated 1.3.0. Имена JAR и версии библиотек перечислены в `tools/build.ps1`. Для дополнительных моделей нужны установленные Create Encased и Steam ’n’ Rails.
 
 ```powershell
-pwsh -File tools/build.ps1 -Profile "$env:APPDATA/ModrinthApp/profiles/Kriate" -Libraries "$env:APPDATA/ModrinthApp/meta/libraries" -Jdk 'C:/Program Files/Java/jdk-21.0.11'
+pwsh -File tools/build.ps1 -Profile 'C:/Minecraft/Profiles/Kriate' -Libraries 'C:/Minecraft/Libraries' -Jdk 'C:/Program Files/Java/jdk-21.0.11'
 ```
 
 Результат: `dist/create-more-fix-1.5.12-mc1.21.1.jar`. Технический идентификатор `catwalk_orientation` сохранён для совместимости существующих миров. Перед обновлением сохраните резервную копию мира.
