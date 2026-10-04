@@ -15,7 +15,7 @@
 
 Minecraft 1.21.1, NeoForge 21.1.228+, Create 6.0.10, Create Deco 2.1.3, Copycats 3.0.4+. Дополнительная совместимость: Create Encased, Steam ’n’ Rails, Forgematica, Sable и Create: Simulated.
 
-## Сборка исходников 1.5.12
+## Сборка исходников 1.5.13
 
 Нужны Windows, PowerShell 7 и JDK 21. Скрипт использует зависимости из установленного игрового профиля; Gradle-проект пока не предоставляется.
 
@@ -25,7 +25,7 @@ Minecraft 1.21.1, NeoForge 21.1.228+, Create 6.0.10, Create Deco 2.1.3, Copycats
 pwsh -File tools/build.ps1 -Profile 'C:/Minecraft/Profiles/Kriate' -Libraries 'C:/Minecraft/Libraries' -Jdk 'C:/Program Files/Java/jdk-21.0.11'
 ```
 
-Результат: `dist/create-more-fix-1.5.12-mc1.21.1.jar`. Технический идентификатор `catwalk_orientation` сохранён для совместимости существующих миров. Перед обновлением сохраните резервную копию мира.
+Результат: `dist/create-more-fix-1.5.13-mc1.21.1.jar`. Технический идентификатор `catwalk_orientation` сохранён для совместимости существующих миров. Перед обновлением сохраните резервную копию мира.
 
 Исходники и расширения моделей находятся в `src/main`. Игровые зависимости, миры и персональные настройки в репозиторий не включены.
 

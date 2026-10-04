@@ -46,6 +46,21 @@ public final class VanillaConnectionResources {
             Files.createDirectories(assets.resolve("blockstates"));Files.createDirectories(assets.resolve("textures/block"));
             Files.writeString(root.resolve("pack.mcmeta"),"{\"pack\":{\"pack_format\":34,\"description\":\"MoreFix generated connected textures\"}}");
             Files.createDirectories(assets.resolve("models/block"));
+            // Create assets remain in the user's installation, never in the distributed JAR.
+            for(String name:List.of("industrial_iron_block","industrial_iron_block_top","weathered_iron_block","weathered_iron_block_top","andesite_block","zinc_block","brass_block")){
+                BufferedImage source;
+                try(var stream=original(ResourceLocation.parse("create:block/"+name),"textures",".png")){source=ImageIO.read(stream);}
+                int w=source.getWidth(),h=source.getHeight(),border=Math.max(1,w/8);
+                int left=border,right=w-border,top=border,bottom=h-border-((name.equals("industrial_iron_block")||name.equals("weathered_iron_block"))?1:0);
+                BufferedImage sheet=new BufferedImage(w*4,h*4,BufferedImage.TYPE_INT_ARGB);
+                for(int tile=0;tile<16;tile++)for(int y=0;y<h;y++)for(int x=0;x<w;x++){
+                    int sx=x,sy=y;
+                    if(((tile&1)!=0&&y<top)||((tile&2)!=0&&y>=bottom))sy=top+Math.floorMod(y-top,bottom-top);
+                    if(((tile&4)!=0&&x<left)||((tile&8)!=0&&x>=right))sx=left+Math.floorMod(x-left,right-left);
+                    sheet.setRGB(tile%4*w+x,tile/4*h+y,source.getRGB(sx,sy));
+                }
+                ImageIO.write(sheet,"png",assets.resolve("textures/block/"+name+"_connected.png").toFile());
+            }
             Files.writeString(assets.resolve("models/block/connected_glass.json"),"{\"parent\":\"minecraft:block/glass\",\"render_type\":\"minecraft:translucent\"}");
             Set<String> generated=new HashSet<>();
             for(var entry:VanillaConnections.IDS.entrySet()){
