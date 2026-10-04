@@ -9,7 +9,7 @@
 - Расширенные покрытия Copycats, включая прутья и решётки с панелью; сохранение и отображение покрытий в схемах и списке материалов.
 - Горизонтальный выходной вал каретки, движение и стыковка саблевелов, сохранение настроек беспроводной связи.
 
-[Сообщить об ошибке](https://github.com/MontiSIk/create-morefix/issues) · [Связаться в Discord](https://discord.com/users/307551324956917760)
+[CurseForge](https://www.curseforge.com/minecraft/mc-mods/create-morefix) · [Сообщить об ошибке](https://github.com/MontiSIk/create-morefix/issues) · [Связаться в Discord](https://discord.com/users/307551324956917760)
 
 ## Зависимости
 
