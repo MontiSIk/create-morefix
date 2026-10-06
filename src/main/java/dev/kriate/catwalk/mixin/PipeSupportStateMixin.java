@@ -12,6 +12,18 @@ import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 @Mixin(value=BlockBehaviour.BlockStateBase.class,remap=false)
 public abstract class PipeSupportStateMixin {
+    /** Claim support placement before a Copycat interprets the support item as coating material. */
+    @Inject(method="useItemOn",at=@At("HEAD"),cancellable=true)
+    private void morefix$coverBeforeMaterial(ItemStack stack,net.minecraft.world.level.Level level,
+            net.minecraft.world.entity.player.Player player,net.minecraft.world.InteractionHand hand,
+            net.minecraft.world.phys.BlockHitResult hit,CallbackInfoReturnable<net.minecraft.world.ItemInteractionResult> cir){
+        if(player==null||!(stack.getItem() instanceof net.minecraft.world.item.BlockItem item))return;
+        var state=(net.minecraft.world.level.block.state.BlockState)(Object)this;
+        if(!PipeSupports.isPipe(state.getBlock())||!PipeSupports.isSupport(item.getBlock()))return;
+        var result=PipeSupports.cover(item,new net.minecraft.world.item.context.UseOnContext(player,hand,hit));
+        if(result!=null)cir.setReturnValue(result==net.minecraft.world.InteractionResult.FAIL
+                ?net.minecraft.world.ItemInteractionResult.FAIL:net.minecraft.world.ItemInteractionResult.sidedSuccess(level.isClientSide));
+    }
     @Inject(method={"getShape(Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;","getCollisionShape(Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;","getVisualShape"},at=@At("RETURN"),cancellable=true)
     private void morefix$shape(BlockGetter world,BlockPos pos,CollisionContext context,CallbackInfoReturnable<VoxelShape> cir){
         var state=(net.minecraft.world.level.block.state.BlockState)(Object)this;if(!PipeSupports.isPipe(state.getBlock()))return;

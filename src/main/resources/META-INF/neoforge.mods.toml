@@ -3,7 +3,7 @@ loaderVersion="[4,)"
 license="MIT"
 [[mods]]
 modId="catwalk_orientation"
-version="1.5.13"
+version="1.5.14"
 displayName="Create: MoreFix"
 logoFile="logo.png"
 description='''Create fixes: six-way Deco catwalks with embedded railings, horizontal fluid tanks and boilers, and vertical item vaults. Supports Create Encased tanks and moving Simulated docking ports.'''

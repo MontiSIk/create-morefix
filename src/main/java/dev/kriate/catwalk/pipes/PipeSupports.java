@@ -17,7 +17,7 @@ public final class PipeSupports {
     public static boolean isSupport(Block block){return block instanceof SupportBlock||block instanceof SupportWedgeBlock;}
     public static boolean isPipe(Block block){
         if(!(block instanceof FluidPipeBlock||block instanceof AxisPipeBlock||block instanceof EncasedPipeBlock))return false;
-        var namespace=BuiltInRegistries.BLOCK.getKey(block).getNamespace();return namespace.equals("create")||namespace.equals("createcasing");
+        var namespace=BuiltInRegistries.BLOCK.getKey(block).getNamespace();return namespace.equals("create")||namespace.equals("createcasing")||namespace.equals("copycats");
     }
     public static PipeSupportBehaviour behaviour(BlockGetter world,BlockPos pos){return BlockEntityBehaviour.get(world,pos,PipeSupportBehaviour.TYPE);}
     public static BlockState support(BlockGetter world,BlockPos pos){var b=behaviour(world,pos);return b==null?null:b.support;}
