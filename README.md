@@ -45,4 +45,4 @@ Sources and model extensions are under `src/main`. Game dependencies, worlds, cr
 
 ## Credits and license
 
-A project by **MontiSIk / HorsDuMunde**, developed with substantial assistance from **OpenAI Codex**. Create and compatible addons belong to their respective authors. MoreFix's source code is licensed under **MIT**; see [LICENSE](LICENSE).
+A project by **MontiSIk**, developed with substantial assistance from **OpenAI Codex**. Create and compatible addons belong to their respective authors. MoreFix's source code is licensed under **MIT**; see [LICENSE](LICENSE).
