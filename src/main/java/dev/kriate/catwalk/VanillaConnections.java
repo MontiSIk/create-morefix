@@ -26,7 +26,7 @@ public final class VanillaConnections {
         for(String stone:STONES)IDS.put(ResourceLocation.fromNamespaceAndPath("create","polished_cut_"+stone),"create_polished_cut_"+stone);
         addPane(ResourceLocation.withDefaultNamespace("glass_pane"));
         for(var dye:net.minecraft.world.item.DyeColor.values())addPane(ResourceLocation.withDefaultNamespace(dye.getName()+"_stained_glass_pane"));
-        for(String metal:METALS){var id=ResourceLocation.fromNamespaceAndPath("createdeco",metal+"_window");IDS.put(id,"createdeco_"+id.getPath());addPane(ResourceLocation.fromNamespaceAndPath("createdeco",metal+"_window_pane"));}
+        if(OptionalMods.deco())for(String metal:METALS){var id=ResourceLocation.fromNamespaceAndPath("createdeco",metal+"_window");IDS.put(id,"createdeco_"+id.getPath());addPane(ResourceLocation.fromNamespaceAndPath("createdeco",metal+"_window_pane"));}
         for(String pane:CREATE_PANES)addPane(ResourceLocation.fromNamespaceAndPath("create",pane));
         IDS.forEach((id,name)->VARIANTS.put(id,REGISTER.register("connected_"+name,()->createVariant(id))));
     }

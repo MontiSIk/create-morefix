@@ -1,6 +1,5 @@
 package dev.kriate.catwalk.client;
 import dev.kriate.catwalk.PlacementModes;
-import com.copycatsplus.copycats.foundation.copycat.ICopycatBlock;
 import com.simibubi.create.AllSpriteShifts;
 import com.simibubi.create.foundation.block.connected.*;
 import net.minecraft.core.*;
@@ -43,16 +42,7 @@ public final class MaterialConnections extends ConnectedTextureBehaviour.Base {
     };}
     public static void prepare(){for(String name:List.of("industrial_iron_block","weathered_iron_block")){iron(name);iron(name+"_top");}for(String name:List.of("andesite_block","zinc_block","brass_block"))iron(name);for(var block:PlacementModes.blocks())for(Direction face:Direction.values())new MaterialConnections().getShift(block.defaultBlockState(),face,null);}
     private static boolean enabled(BlockAndTintGetter reader,BlockPos pos,BlockState fallback){
-        // Copycats filters out positions which cannot share geometry. The
-        // placement flag belongs to the real BE, not to that filtered view.
-        while(true){
-            if(reader instanceof com.copycatsplus.copycats.foundation.copycat.model.FilteredBlockAndTintGetter filtered){reader=filtered.wrapped;continue;}
-            if(reader instanceof com.copycatsplus.copycats.foundation.copycat.model.ScaledBlockAndTintGetter scaled){pos=scaled.getTruePos(pos);reader=scaled.getWrapped();continue;}
-            break;
-        }
-        var actual=reader.getBlockState(pos);
-        if(actual.getBlock() instanceof ICopycatBlock)return reader.getBlockEntity(pos) instanceof dev.kriate.catwalk.CopycatPlacementAccess access&&access.morefix$connected();
-        return fallback.getOptionalValue(PlacementModes.CONNECTED).orElse(false);
+        return dev.kriate.catwalk.OptionalMods.copycats()?CopycatContext.enabled(reader,pos,fallback):fallback.getOptionalValue(PlacementModes.CONNECTED).orElse(false);
     }
     @Override public boolean connectsTo(BlockState state,BlockState other,BlockAndTintGetter reader,BlockPos pos,BlockPos otherPos,Direction face){
         var id=dev.kriate.catwalk.VanillaConnections.original(state.getBlock());

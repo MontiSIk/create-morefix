@@ -20,6 +20,7 @@ public final class BarMaterials {
             add("createdeco", metal + "_bars_overlay", "copycat_bars_createdeco_" + metal + "_bars_overlay");
     }
     private static void add(String namespace, String block, String model) {
+        if(namespace.equals("createdeco")&&!dev.kriate.catwalk.OptionalMods.deco())return;
         String texture=namespace.equals("minecraft")?"minecraft:block/"+block:namespace.equals("create")?"create:block/bars/"+block:block.endsWith("_overlay")?"catwalk_orientation:block/copycat_"+block:"createdeco:block/palettes/metal_bars/"+block;
         TEXTURES.add(ResourceLocation.parse(texture));
         MODELS.put(ResourceLocation.fromNamespaceAndPath(namespace, block),

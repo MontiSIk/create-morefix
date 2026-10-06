@@ -13,9 +13,9 @@
 
 ## Зависимости
 
-Minecraft 1.21.1, NeoForge 21.1.228+, Create 6.0.10, Create Deco 2.1.3, Copycats 3.0.4+. Дополнительная совместимость: Create Encased, Steam ’n’ Rails, Forgematica, Sable и Create: Simulated.
+Для версии 1.5.15 обязательны Minecraft 1.21.1, NeoForge 21.1.228+, Java 21 и Create 6.0.10. Create Deco 2.1.3 и Copycats 3.0.4+ необязательны: связанные с ними функции включаются только при наличии соответствующего мода. Дополнительная совместимость: Create Encased, Steam ’n’ Rails, Forgematica, Sable и Create: Simulated.
 
-## Сборка исходников 1.5.13
+## Сборка исходников 1.5.15
 
 Нужны Windows, PowerShell 7 и JDK 21. Скрипт использует зависимости из установленного игрового профиля; Gradle-проект пока не предоставляется.
 

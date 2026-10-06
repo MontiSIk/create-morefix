@@ -22,7 +22,7 @@ public abstract class ConnectedPlacementMixin {
     }
     @Inject(method="place",at=@At("RETURN"))
     private void morefix$copycatMode(BlockPlaceContext context,CallbackInfoReturnable<InteractionResult> ci){
-        if(ci.getReturnValue().consumesAction()&&PlacementModes.ctrl(context.getPlayer())&&context.getLevel().getBlockEntity(context.getClickedPos()) instanceof CopycatPlacementAccess access&&access instanceof com.copycatsplus.copycats.foundation.copycat.ICopycatBlockEntity){
+        if(dev.kriate.catwalk.OptionalMods.copycats()&&ci.getReturnValue().consumesAction()&&PlacementModes.ctrl(context.getPlayer())&&context.getLevel().getBlockEntity(context.getClickedPos()) instanceof CopycatPlacementAccess access&&access instanceof com.copycatsplus.copycats.foundation.copycat.ICopycatBlockEntity){
             access.morefix$connected(true);
             if(access instanceof com.simibubi.create.foundation.blockEntity.SmartBlockEntity entity)entity.notifyUpdate();
         }

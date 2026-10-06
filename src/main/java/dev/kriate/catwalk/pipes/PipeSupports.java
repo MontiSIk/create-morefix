@@ -14,7 +14,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public final class PipeSupports {
     private PipeSupports() {}
-    public static boolean isSupport(Block block){return block instanceof SupportBlock||block instanceof SupportWedgeBlock;}
+    public static boolean isSupport(Block block){return dev.kriate.catwalk.OptionalMods.deco()&&(block instanceof SupportBlock||block instanceof SupportWedgeBlock);}
     public static boolean isPipe(Block block){
         if(!(block instanceof FluidPipeBlock||block instanceof AxisPipeBlock||block instanceof EncasedPipeBlock))return false;
         var namespace=BuiltInRegistries.BLOCK.getKey(block).getNamespace();return namespace.equals("create")||namespace.equals("createcasing")||namespace.equals("copycats");

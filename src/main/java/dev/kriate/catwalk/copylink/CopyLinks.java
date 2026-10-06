@@ -12,7 +12,7 @@ public final class CopyLinks {
     public static final DeferredHolder<Block,CoveredLinkBlock> BLOCK=BLOCKS.register("copycat_redstone_link",()->new CoveredLinkBlock(BlockBehaviour.Properties.ofFullCopy(CCBlocks.COPYCAT_BLOCK.get()).dropsLike(AllBlocks.REDSTONE_LINK.get())));
     public static final com.simibubi.create.foundation.data.CreateRegistrate REG=com.simibubi.create.foundation.data.CreateRegistrate.create("catwalk_orientation");
     public static final com.tterrag.registrate.util.entry.BlockEntityEntry<CoveredLinkEntity> ENTITY=REG.blockEntity("copycat_redstone_link",CoveredLinkEntity::new).validBlock(BLOCK::get).register();
-    public static void register(IEventBus bus){BLOCKS.register(bus);REG.registerEventListeners(bus);}
+    public static void register(IEventBus bus){BLOCKS.register(bus);REG.registerEventListeners(bus);net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(net.neoforged.bus.api.EventPriority.HIGHEST,CoverInteraction::cover);}
 }
 
 

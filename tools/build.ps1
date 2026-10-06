@@ -146,9 +146,9 @@ try {
 } finally {$z.Dispose()}
 $dist = Join-Path $project 'dist'
 New-Item -ItemType Directory -Force -Path $dist | Out-Null
-$jar = Join-Path $dist 'create-more-fix-1.5.14-mc1.21.1.jar'
+$jar = Join-Path $dist 'create-more-fix-1.5.15-mc1.21.1.jar'
 Push-Location $project
-try { & "$Jdk/bin/jar.exe" --create --file 'dist/create-more-fix-1.5.14-mc1.21.1.jar' -C 'build/classes' . } finally { Pop-Location }
+try { & "$Jdk/bin/jar.exe" --create --file 'dist/create-more-fix-1.5.15-mc1.21.1.jar' -C 'build/classes' . } finally { Pop-Location }
 if ($LASTEXITCODE -ne 0) { throw "jar failed: $LASTEXITCODE" }
 Write-Output $jar
 

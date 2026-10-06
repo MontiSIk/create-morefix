@@ -8,7 +8,7 @@ public final class GantryRotation {
     @SubscribeEvent public static void setup(net.neoforged.fml.event.lifecycle.FMLClientSetupEvent event){
         event.enqueueWork(()->{
             com.simibubi.create.content.contraptions.wrench.RadialWrenchMenu.registerRotationProperty(GantryAxes.SHAFT_ALONG_MOUNT,"Shaft along mount");
-            com.simibubi.create.content.contraptions.wrench.RadialWrenchMenu.registerRotationProperty(com.github.talrey.createdeco.blocks.SupportWedgeBlock.ORIENTATION,"Support angle");
+            if(dev.kriate.catwalk.OptionalMods.deco())com.simibubi.create.content.contraptions.wrench.RadialWrenchMenu.registerRotationProperty(com.github.talrey.createdeco.blocks.SupportWedgeBlock.ORIENTATION,"Support angle");
         });
     }
 }

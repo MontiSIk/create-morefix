@@ -7,7 +7,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
-@EventBusSubscriber(modid="catwalk_orientation")
 public final class CoverInteraction {
     @SubscribeEvent(priority=net.neoforged.bus.api.EventPriority.HIGHEST) public static void cover(PlayerInteractEvent.RightClickBlock event){
         var level=event.getLevel();var pos=event.getPos();var stack=event.getItemStack();var state=level.getBlockState(pos);
