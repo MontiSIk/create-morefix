@@ -8,7 +8,3 @@
   "client": ["PipeSupportMenuMixin", "GantryCarriageRendererMixin", "GantryCarriageVisualMixin", "LocometalBoilerOutlineMixin", "ModInfoDisplayMixin", "ForgematicaCopycatMixin", "ForgematicaBufferAccess", "ForgematicaBufferMixin", "ForgematicaMaterialFileMixin", "ForgematicaMaterialPlacementMixin", "ForgematicaMaterialResultMixin", "CopycatLoadMixin", "CopycatBarsModelMixin", "CopycatBarVisibilityMixin", "CopycatAtlasSpriteMixin", "MaterialCTMixin", "MaterialModelBakeMixin", "CatwalkCTMixin", "StorageTextureMixin", "VaultTextureMixin", "TankFluidRendererMixin", "TankCullMixin", "TankModelMixin", "DockingRenderMixin"],
   "injectors": {"defaultRequire": 1}
 }
-
-
-
-
