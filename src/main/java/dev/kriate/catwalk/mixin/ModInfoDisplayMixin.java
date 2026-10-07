@@ -7,9 +7,9 @@ import org.spongepowered.asm.mixin.injection.*;
 public abstract class ModInfoDisplayMixin {
     @ModifyVariable(method="setInfo",at=@At("HEAD"),argsOnly=true,ordinal=0)
     private List<String> morefix$displayIdentifier(List<String> info){
-        if(info.isEmpty()||info.getFirst()==null||!info.getFirst().contains("Create: MoreFix"))return info;
+        if(info.isEmpty()||info.getFirst()==null||!info.getFirst().contains("MoreFix"))return info;
         var displayed=new ArrayList<String>(info.size());
-        for(String line:info)displayed.add(line==null?null:line.replace("catwalk_orientation","Minor fixes"));
+        for(String line:info)displayed.add(line==null?null:line.replace("morefix","MoreFix"));
         return displayed;
     }
 }

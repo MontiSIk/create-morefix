@@ -8,7 +8,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.common.extensions.IBlockEntityExtension;
 import java.util.*;
 
-@EventBusSubscriber(modid="catwalk_orientation",value=Dist.CLIENT)
+@EventBusSubscriber(modid="morefix",value=Dist.CLIENT)
 public final class CopycatFirstPlacement {
     private static final Set<BlockEntity> PENDING=Collections.newSetFromMap(new IdentityHashMap<>());
     public static void loaded(BlockEntity entity){if(entity.getLevel()!=null&&entity.getLevel().isClientSide)PENDING.add(entity);}

@@ -1,13 +1,10 @@
-import argparse
 from pathlib import Path
 from io import BytesIO
 from zipfile import ZipFile
 from PIL import Image
 
-parser = argparse.ArgumentParser()
-parser.add_argument('create_jar', type=Path)
-jar = parser.parse_args().create_jar
-out = Path(__file__).resolve().parent.parent / 'src/main/resources/assets/catwalk_orientation/textures/block'
+jar = Path(r'C:/Users/sstei/AppData/Roaming/ModrinthApp/profiles/Kriate/mods/create-1.21.1-6.0.10.jar')
+out = Path(__file__).resolve().parent.parent / 'src/main/resources/assets/morefix/textures/block'
 out.mkdir(parents=True, exist_ok=True)
 with ZipFile(jar) as archive:
     for name in ('industrial_iron_block', 'industrial_iron_block_top', 'weathered_iron_block', 'weathered_iron_block_top', 'andesite_block', 'zinc_block', 'brass_block'):

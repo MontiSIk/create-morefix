@@ -1,12 +1,19 @@
 param(
-    [Parameter(Mandatory=$true)][string]$Profile,
-    [Parameter(Mandatory=$true)][string]$Libraries,
+    [string]$Version = '1.5.16',
+    [string]$Profile = 'C:\Users\sstei\AppData\Roaming\ModrinthApp\profiles\Kriate',
+    [string]$Libraries = 'C:\Users\sstei\AppData\Roaming\ModrinthApp\meta\libraries',
     [string]$Jdk = 'C:\Program Files\Java\jdk-21.0.11'
 )
 $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 $project = Split-Path $PSScriptRoot -Parent
 $output = Join-Path $project 'build/classes'
+if(Test-Path -LiteralPath $output){
+    $resolved=[IO.Path]::GetFullPath($output)
+    $expected=[IO.Path]::GetFullPath((Join-Path $project 'build'))+[IO.Path]::DirectorySeparatorChar
+    if(!$resolved.StartsWith($expected,[StringComparison]::OrdinalIgnoreCase)){throw 'Unexpected build output path'}
+    Remove-Item -LiteralPath $resolved -Recurse -Force
+}
 New-Item -ItemType Directory -Force -Path $output | Out-Null
 $scratch = Join-Path ([IO.Path]::GetTempPath()) 'kriate-catwalk-compile'
 New-Item -ItemType Directory -Force -Path $scratch | Out-Null
@@ -54,7 +61,7 @@ $rotations = [ordered]@{
     east = @{x=90;y=90}; south = @{x=90;y=180}; west = @{x=90;y=270}
 }
 $states = Join-Path $output 'assets/createdeco/blockstates'
-$models = Join-Path $output 'assets/catwalk_orientation/models/block'
+$models = Join-Path $output 'assets/morefix/models/block'
 New-Item -ItemType Directory -Force -Path $states | Out-Null
 New-Item -ItemType Directory -Force -Path $models | Out-Null
 foreach ($material in $materials) {
@@ -67,8 +74,8 @@ foreach ($material in $materials) {
         foreach($edge in $edges.Keys) {
             $modelName="${material}_${face}_${edge}"
             $condition=@{facing=$face};$condition["rail_$edge"]='true'
-            $parts+=@{when=$condition;apply=@{model="catwalk_orientation:block/$modelName"}}
-            $model=@{parent="createdeco:block/${material}_catwalk_railing";loader='catwalk_orientation:railing';reference="createdeco:block/${material}_catwalk_railing";mount_x=$rotation.x;mount_y=$rotation.y;edge_y=$edges[$edge]}
+            $parts+=@{when=$condition;apply=@{model="morefix:block/$modelName"}}
+            $model=@{parent="createdeco:block/${material}_catwalk_railing";loader='morefix:railing';reference="createdeco:block/${material}_catwalk_railing";mount_x=$rotation.x;mount_y=$rotation.y;edge_y=$edges[$edge]}
             [IO.File]::WriteAllText((Join-Path $models "$modelName.json"),($model | ConvertTo-Json -Depth 5),[Text.UTF8Encoding]::new($false))
         }
     }
@@ -95,7 +102,7 @@ foreach ($assetJar in @($create,$deco,(Join-Path $Profile 'mods/Create Encased-1
                     if($key -match 'axis=z') {
                         $copy=($model | ConvertTo-Json -Depth 12 | ConvertFrom-Json -AsHashtable)
                         $copy.x=90;$copy.y=0;$copy.uvlock=$false
-                        if($name -eq 'item_vault') {$copy=@{model='catwalk_orientation:block/vertical_item_vault'}}
+                        if($name -eq 'item_vault') {$copy=@{model='morefix:block/vertical_item_vault'}}
                         $variants[$key.Replace('axis=z','axis=y')]=$copy
                     }
                 } else {
@@ -139,16 +146,16 @@ try {
         $variants["$key,shaft_along_mount=false"]=$native.variants[$key]
         $face=($key -split 'facing=')[1]
         $rotation=$rotations[$face]
-        $variants["$key,shaft_along_mount=true"]=@{model='catwalk_orientation:block/gantry_axial';x=$(switch($face){'up'{90};'down'{270};default{0}});y=$(switch($face){'east'{270};'north'{180};'west'{90};default{0}})}
+        $variants["$key,shaft_along_mount=true"]=@{model='morefix:block/gantry_axial';x=$(switch($face){'up'{90};'down'{270};default{0}});y=$(switch($face){'east'{270};'north'{180};'west'{90};default{0}})}
     }
     $target=Join-Path $output 'assets/create/blockstates';New-Item -ItemType Directory -Force $target | Out-Null
     [IO.File]::WriteAllText((Join-Path $target 'gantry_carriage.json'),(@{variants=$variants}|ConvertTo-Json -Depth 10),[Text.UTF8Encoding]::new($false))
 } finally {$z.Dispose()}
 $dist = Join-Path $project 'dist'
 New-Item -ItemType Directory -Force -Path $dist | Out-Null
-$jar = Join-Path $dist 'create-more-fix-1.5.15-mc1.21.1.jar'
+$jar = Join-Path $dist "create-more-fix-$Version-mc1.21.1.jar"
 Push-Location $project
-try { & "$Jdk/bin/jar.exe" --create --file 'dist/create-more-fix-1.5.15-mc1.21.1.jar' -C 'build/classes' . } finally { Pop-Location }
+try { & "$Jdk/bin/jar.exe" --create --file "dist/create-more-fix-$Version-mc1.21.1.jar" -C 'build/classes' . } finally { Pop-Location }
 if ($LASTEXITCODE -ne 0) { throw "jar failed: $LASTEXITCODE" }
 Write-Output $jar
 

@@ -46,10 +46,12 @@ public final class MovingPorts implements MovementBehaviour {
     public static UUID owner(Object peer){for(var t:PORTS.values())if(t.other==peer&&t.context.contraption.entity!=null)return t.context.contraption.entity.getUUID();return null;}
     public static void writeRenderBinding(Object peer,CompoundTag tag){
         for(var t:PORTS.values())if(t.other==peer&&t.joint!=null&&t.peerAnchor!=null
-            &&t.context.contraption.entity instanceof com.simibubi.create.content.contraptions.gantry.GantryContraptionEntity){
+            &&t.context.contraption.entity!=null){
             var data=new CompoundTag();data.putUUID("Owner",t.context.contraption.entity.getUUID());
             data.putUUID("SubLevel",t.targetBody.getUniqueId());
             for(int i=0;i<3;i++){data.putDouble("Local"+i,t.localAnchor.get(i));data.putDouble("Peer"+i,t.peerAnchor.get(i));}
+            data.putDouble("OrientationX",t.localOrientation.x);data.putDouble("OrientationY",t.localOrientation.y);
+            data.putDouble("OrientationZ",t.localOrientation.z);data.putDouble("OrientationW",t.localOrientation.w);
             tag.put("MoreFixMovingRender",data);return;
         }
     }
@@ -75,7 +77,7 @@ public final class MovingPorts implements MovementBehaviour {
         if(ctx.world.isClientSide)return;
         var t=transit(ctx);if(t==null)return;
         t.port.clearRemoved();
-        if(t.other!=null&&(!t.other.powered||!t.port.powered||!t.other.hasOtherConnector())){t.release();}
+        if(t.other!=null&&(!live(t.other)||!t.other.powered||!t.port.powered||!t.other.hasOtherConnector())){t.release();}
         if(t.other!=null&&t.joint==null&&ctx.contraption.entity!=null){t.attach();}
         t.step(false);
         if(t.other!=null){
@@ -135,13 +137,22 @@ public final class MovingPorts implements MovementBehaviour {
         final MovementContext context;final DockingConnectorBlockEntity port;DockingConnectorBlockEntity other;
         GenericConstraintHandle joint;BlockPos target;Vector3d localAnchor,peerAnchor;Quaterniond localOrientation;ServerSubLevel targetBody;
         Vector3d lastAnchor=new Vector3d(Double.NaN);
+        Quaterniond lastOrientation=new Quaterniond(Double.NaN,0,0,1);
         boolean wiredConnected;
         Transit(MovementContext c,DockingConnectorBlockEntity p,DockingConnectorBlockEntity o){context=c;port=p;other=o;}
         void store(){CompoundTag saved=port.saveWithFullMetadata(context.world.registryAccess());context.blockEntityData.merge(saved);
             var info=context.contraption.getBlocks().get(context.localPos);if(info!=null&&info.nbt()!=null)info.nbt().merge(saved);
         }
         void release(){syncRender(true);if(joint!=null){joint.remove();joint=null;}var peer=other;other=null;wiredConnected=false;
-            PORTS.remove(port);port.unDock();if(peer!=null){peer.unDock();peer.sendData();}PORTS.put(port,this);
+            if(peer!=null)port.ccWiredElement.disconnect(peer.ccWiredElement);
+            // Captured actors and removed plots have no world block to notify.
+            // Keep native cleanup, but never send updates to nonexistent plot holders.
+            PORTS.remove(port);((PortAccess)port).morefix$disconnectDetached();
+            if(peer!=null){
+                ((PortAccess)peer).morefix$clearWaiting();
+                if(live(peer))peer.unDock();else ((PortAccess)peer).morefix$disconnectDetached();
+            }
+            PORTS.put(port,this);
         }
         void attach(){
             var entity=context.contraption.entity;var k=(KinematicContraption)(Object)entity;
@@ -195,15 +206,45 @@ public final class MovingPorts implements MovementBehaviour {
                     }
                 }
             }
-            var q=new Quaterniond(((KinematicContraption)(Object)entity).sable$getOrientation(partial)).mul(localOrientation);
+            var q=new Quaterniond(((KinematicContraption)(Object)entity).sable$getOrientation(partial));
+            // Physics precedes Create's bearing tick. Use the live angular speed
+            // for the upcoming substep, including stops and direction reversals.
+            if(physics&&entity instanceof com.simibubi.create.content.contraptions.ControlledContraptionEntity controlled
+                &&context.contraption instanceof com.simibubi.create.content.contraptions.bearing.BearingContraption bearing
+                &&!entity.isStalled()
+                &&context.world.getBlockEntity(context.contraption.anchor.relative(bearing.getFacing().getOpposite()))
+                    instanceof com.simibubi.create.content.contraptions.bearing.MechanicalBearingBlockEntity controller){
+                double delta=controller.getAngularSpeed()*java.lang.Math.min(1,partial);
+                var axis=controlled.getRotationAxis();
+                var pivot=entity.toGlobalVector(new Vec3(0.5,0.5,0.5),1);
+                world=net.createmod.catnip.math.VecHelper.rotate(
+                    entity.toGlobalVector(new Vec3(localAnchor.x,localAnchor.y,localAnchor.z),1).subtract(pivot),delta,axis).add(pivot);
+                var matrix=new Matrix3d();
+                for(int i=0;i<3;i++){
+                    var basis=new Vector3d();matrix.getColumn(i,basis);
+                    var rotated=net.createmod.catnip.math.VecHelper.rotate(new Vec3(basis.x,basis.y,basis.z),delta,axis);
+                    matrix.setColumn(i,rotated.x,rotated.y,rotated.z);
+                }
+                q.setFromNormalized(matrix).mul(((KinematicContraption)(Object)entity).sable$getOrientation(1));
+            }
+            q.mul(localOrientation);
             var position=new Vector3d(world.x,world.y,world.z);
             joint.setFrame1(position,q);
             // Updating a joint frame does not wake a sleeping Rapier body by itself.
-            if(!Double.isFinite(lastAnchor.x)||lastAnchor.distanceSquared(position)>1e-12){
+            if(!Double.isFinite(lastAnchor.x)||lastAnchor.distanceSquared(position)>1e-12
+                ||!Double.isFinite(lastOrientation.x)||1-java.lang.Math.abs(lastOrientation.dot(q))>1e-12){
                 SubLevelPhysicsSystem.require((ServerLevel)context.world).getPipeline().wakeUp(targetBody);
                 lastAnchor.set(position);
+                lastOrientation.set(q);
             }
         }
     }
     public static void physicsStep(Object peer){for(var t:PORTS.values())if(t.other==peer)t.step(true);}
+    private static boolean live(DockingConnectorBlockEntity port){
+        var level=port.getLevel();if(level==null||port.isRemoved())return false;
+        var container=dev.ryanhcode.sable.api.sublevel.SubLevelContainer.getContainer(level);
+        if(container!=null&&container.inBounds(port.getBlockPos())
+            &&container.getPlot(new net.minecraft.world.level.ChunkPos(port.getBlockPos()))==null)return false;
+        return level.getBlockEntity(port.getBlockPos())==port;
+    }
 }

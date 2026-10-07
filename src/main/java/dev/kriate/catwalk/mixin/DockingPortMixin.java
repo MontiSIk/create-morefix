@@ -13,9 +13,17 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class DockingPortMixin implements PortAccess {
     @Unique private java.util.UUID morefix$waitingOwner;
     @Shadow protected DockingConnectorBlockEntity.DockingConnectorState state;
+    @Shadow protected double closestPairDistance;
     @Invoker("removeConstraint") public abstract void morefix$clearConstraint();
     public void morefix$locked(){state=DockingConnectorBlockEntity.DockingConnectorState.LOCKED;}
     public void morefix$clearWaiting(){morefix$waitingOwner=null;}
+    public void morefix$disconnectDetached(){
+        var port=(DockingConnectorBlockEntity)(Object)this;
+        morefix$waitingOwner=null;closestPairDistance=Double.MAX_VALUE;
+        port.otherConnectorPosition=null;port.otherConnectorSubLevelId=null;
+        state=port.isExtended()?DockingConnectorBlockEntity.DockingConnectorState.EXTENDED:DockingConnectorBlockEntity.DockingConnectorState.UNPOWERED;
+        port.tank.disconnect();port.battery.disconnect();morefix$clearConstraint();
+    }
     @Inject(method="sable$physicsTick",at=@At("HEAD"))
     private void movingAnchor(CallbackInfo ci){MovingPorts.physicsStep(this);}
     @Inject(method="remove",at=@At("HEAD"),cancellable=true)

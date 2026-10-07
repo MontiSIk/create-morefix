@@ -21,12 +21,12 @@ public final class MaterialConnections extends ConnectedTextureBehaviour.Base {
     private static final Map<String,CTSpriteShiftEntry> IRON=new HashMap<>();
     public static boolean applies(BlockState state){var id=BuiltInRegistries.BLOCK.getKey(state.getBlock());return PlacementModes.supports(id.getNamespace(),id.getPath());}
     private static CTSpriteShiftEntry casing(String original,String target){return IRON.computeIfAbsent(original+"->"+target,n->CTSpriteShifter.getCT(AllCTTypes.OMNIDIRECTIONAL,ResourceLocation.parse(original),ResourceLocation.parse(target)));}
-    private static CTSpriteShiftEntry iron(String name){return IRON.computeIfAbsent(name,n->CTSpriteShifter.getCT(AllCTTypes.CROSS,ResourceLocation.fromNamespaceAndPath("create","block/"+n),ResourceLocation.fromNamespaceAndPath("catwalk_orientation","block/"+n+"_connected")));}
+    private static CTSpriteShiftEntry iron(String name){return IRON.computeIfAbsent(name,n->CTSpriteShifter.getCT(AllCTTypes.CROSS,ResourceLocation.fromNamespaceAndPath("create","block/"+n),ResourceLocation.fromNamespaceAndPath("morefix","block/"+n+"_connected")));}
     @Override public CTSpriteShiftEntry getShift(BlockState state,Direction face,TextureAtlasSprite sprite){var original=dev.kriate.catwalk.VanillaConnections.original(state.getBlock());if(dev.kriate.catwalk.VanillaConnections.IDS.containsKey(original)){
         String texture=dev.kriate.catwalk.VanillaConnections.texture(original);
         if(original.getPath().endsWith("froglight"))texture+=state.getValue(net.minecraft.world.level.block.RotatedPillarBlock.AXIS)==face.getAxis()?"_top":"_side";
         if(sprite!=null&&!sprite.contents().name().equals(ResourceLocation.parse(texture)))return null;
-        String source=texture;return IRON.computeIfAbsent(source,n->CTSpriteShifter.getCT(AllCTTypes.CROSS,ResourceLocation.parse(source),ResourceLocation.fromNamespaceAndPath("catwalk_orientation","block/vanilla_"+source.substring(source.indexOf(':')+1).replace('/','_')+"_connected")));
+        String source=texture;return IRON.computeIfAbsent(source,n->CTSpriteShifter.getCT(AllCTTypes.CROSS,ResourceLocation.parse(source),ResourceLocation.fromNamespaceAndPath("morefix","block/vanilla_"+source.substring(source.indexOf(':')+1).replace('/','_')+"_connected")));
     }return switch(BuiltInRegistries.BLOCK.getKey(state.getBlock()).getPath()){
         case "andesite_casing"->AllSpriteShifts.ANDESITE_CASING;
         case "copper_casing"->AllSpriteShifts.COPPER_CASING;

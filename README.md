@@ -1,9 +1,10 @@
-# Create: MoreFix
+# MoreFix
 
 Building improvements and compatibility fixes for Create on Minecraft 1.21.1 / NeoForge.
 
 - **Pipes inside supports:** combine Create, Create Encased and Copycats fluid pipes with Create Deco supports. Place either part first, keep native fluid transport and materials, and rotate the support independently with a wrench or Create's rotation menu.
 - **Catwalks and railings:** six-way placement with embedded railings that follow the catwalk's orientation.
+- **Ladders with supports and railings:** add both parts with right-click while keeping the ladder climbable. Supports all registered vanilla, Create, Create Deco and Copycats ladder variants, with their materials and orientations preserved.
 - **Storage and boilers:** horizontal fluid tanks, vertical item vaults and vertical Steam 'n' Rails locomotive boilers, including supported variants.
 - **Connected textures:** casings, metals, stone, glass and panes. Toggle with Ctrl; the key can be rebound.
 - **Copycat materials:** improved bars and panel-backed grates, small-part visibility, glass connections, and preservation of materials in schematics, previews and resource lists.
@@ -19,6 +20,18 @@ The current published release is **1.5.15**. It requires **Minecraft 1.21.1, Neo
 
 Use the same MoreFix version and compatible addon set on the server and clients. Back up your world before updating.
 
+The **unreleased 1.5.16 development build** has also been tested with NeoForge 21.1.256, Copycats 3.0.9, Create Encased 1.9.0-ht3, Steam 'n' Rails 0.2.1, Sable 2.0.6 and Simulated 1.3.2. Create 6.0.10 and Create Deco 2.1.3 remain the tested versions for Minecraft 1.21.1. Compatible patch releases are allowed within the declared dependency ranges; future releases still need testing.
+
+## What's new in 1.5.16 (unreleased)
+
+- Combined ladder, support and railing assemblies, including Copycat material preservation.
+- The technical mod ID is now `morefix`, and the display name is **MoreFix**. Registry aliases load blocks and block entities from older worlds.
+- Updated dependency ranges for newer Minecraft 1.21.1 addon releases.
+- Corrected physical and visual alignment of docking ports on rotating bearings.
+- Safe cleanup when a docked sublevel is removed, preventing updates to a nonexistent plot.
+
+For **Forgematica server pasting**, use **Paste NBT Restore Behavior → Place and clone** (`place_clone`). The `none` mode omits coatings, while restoring fields separately can cause Copycats to reject an incomplete material/item pair. Pasting commands require the appropriate server permissions.
+
 ## What's new in 1.5.15
 
 - Optional Create Deco and Copycats dependencies, with conditional registration, client models and mixins.
@@ -27,7 +40,7 @@ Use the same MoreFix version and compatible addon set on the server and clients.
 
 ## Verification
 
-Release 1.5.15 passed **18,842 functional assertions** and world-loading tests for all four Deco/Copycats combinations. These cover materials, connected textures, small parts, pipe/support rotation, fluid transport, saving and loading, and covered wireless links. Dedicated-server and additional movement scenarios are undergoing further verification; this is an actively developed beta.
+Release 1.5.15 passed **18,842 functional assertions** and world-loading tests for all four Deco/Copycats combinations. Development checks additionally cover 1,136 ladder combinations with actual client models before and after reopening the world, dedicated-server loading, 45 Copycat types pasted through server clone commands, and moving docking ports on gantries, pulleys, elevators, pistons and bearings. This is an actively developed beta.
 
 ## Building from source
 
@@ -39,7 +52,7 @@ Compile-time dependencies include Create, Create Deco, Copycats, Forgematica 0.4
 pwsh -File tools/build.ps1 -Profile 'C:/Minecraft/Profiles/Kriate' -Libraries 'C:/Minecraft/Libraries' -Jdk 'C:/Program Files/Java/jdk-21.0.11'
 ```
 
-For the released source, the output is `dist/create-more-fix-1.5.15-mc1.21.1.jar`. The technical mod ID remains `catwalk_orientation` for compatibility with existing worlds.
+The current development source builds `dist/create-more-fix-1.5.16-mc1.21.1.jar`. Its technical mod ID and resource namespace are `morefix`; a compatibility adapter handles older saved identifiers.
 
 Sources and model extensions are under `src/main`. Game dependencies, worlds, credentials and personal settings are excluded from this repository. Derived Create textures are generated locally from the user's installed Create assets.
 

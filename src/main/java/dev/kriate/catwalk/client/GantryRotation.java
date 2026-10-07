@@ -3,7 +3,7 @@ import dev.kriate.catwalk.GantryAxes;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-@EventBusSubscriber(modid="catwalk_orientation",bus=EventBusSubscriber.Bus.MOD,value=Dist.CLIENT)
+@EventBusSubscriber(modid="morefix",bus=EventBusSubscriber.Bus.MOD,value=Dist.CLIENT)
 public final class GantryRotation {
     @SubscribeEvent public static void setup(net.neoforged.fml.event.lifecycle.FMLClientSetupEvent event){
         event.enqueueWork(()->{

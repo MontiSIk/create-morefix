@@ -19,7 +19,7 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
 /** Generates assets from the user's installed game, rather than bundling Minecraft assets. */
-@EventBusSubscriber(modid="catwalk_orientation",bus=EventBusSubscriber.Bus.MOD,value=Dist.CLIENT)
+@EventBusSubscriber(modid="morefix",bus=EventBusSubscriber.Bus.MOD,value=Dist.CLIENT)
 public final class VanillaConnectionResources {
     private static InputStream original(ResourceLocation id,String kind,String suffix)throws IOException {
         var resource=ResourceLocation.fromNamespaceAndPath(id.getNamespace(),kind+"/"+id.getPath()+suffix);
@@ -34,7 +34,7 @@ public final class VanillaConnectionResources {
         if(!json.isJsonObject())return;var object=json.getAsJsonObject();
         if(object.has("model")){
             String original=object.get("model").getAsString(),own=models.get(original);
-            if(own==null){String path="block/connected_"+prefix+"_part_"+models.size();own="catwalk_orientation:"+path;models.put(original,own);Files.writeString(assets.resolve("models/"+path+".json"),"{\"parent\":\""+original+"\",\"render_type\":\"minecraft:translucent\"}");}
+            if(own==null){String path="block/connected_"+prefix+"_part_"+models.size();own="morefix:"+path;models.put(original,own);Files.writeString(assets.resolve("models/"+path+".json"),"{\"parent\":\""+original+"\",\"render_type\":\"minecraft:translucent\"}");}
             object.addProperty("model",own);
         }
         for(var entry:object.entrySet())wrapModels(entry.getValue(),assets,prefix,models);
@@ -42,7 +42,7 @@ public final class VanillaConnectionResources {
     @SubscribeEvent public static void packs(AddPackFindersEvent event){
         if(event.getPackType()!=PackType.CLIENT_RESOURCES)return;
         try{
-            Path root=FMLPaths.CONFIGDIR.get().resolve("morefix-generated-resources"),assets=root.resolve("assets/catwalk_orientation");
+            Path root=FMLPaths.CONFIGDIR.get().resolve("morefix-generated-resources"),assets=root.resolve("assets/morefix");
             Files.createDirectories(assets.resolve("blockstates"));Files.createDirectories(assets.resolve("textures/block"));
             Files.writeString(root.resolve("pack.mcmeta"),"{\"pack\":{\"pack_format\":34,\"description\":\"MoreFix generated connected textures\"}}");
             Files.createDirectories(assets.resolve("models/block"));

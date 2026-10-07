@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cube_all",
   "render_type": "minecraft:cutout",
   "textures": {
-    "all": "catwalk_orientation:block/copycat_andesite_bars_overlay"
+    "all": "morefix:block/copycat_brass_bars_overlay"
   }
 }

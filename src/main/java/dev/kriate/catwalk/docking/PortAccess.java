@@ -3,4 +3,5 @@ public interface PortAccess {
     void morefix$clearConstraint();
     void morefix$locked();
     void morefix$clearWaiting();
+    void morefix$disconnectDetached();
 }

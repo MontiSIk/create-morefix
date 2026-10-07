@@ -2,40 +2,40 @@ modLoader="javafml"
 loaderVersion="[4,)"
 license="MIT"
 [[mods]]
-modId="catwalk_orientation"
-version="1.5.15"
-displayName="Create: MoreFix"
+modId="morefix"
+version="1.5.16"
+displayName="MoreFix"
 logoFile="logo.png"
 description='''Create fixes: six-way Deco catwalks with embedded railings, horizontal fluid tanks and boilers, and vertical item vaults. Supports Create Encased tanks and moving Simulated docking ports.'''
-[[dependencies.catwalk_orientation]]
+[[dependencies.morefix]]
 modId="neoforge"
 type="required"
 versionRange="[21.1.228,)"
 ordering="NONE"
 side="BOTH"
-[[dependencies.catwalk_orientation]]
+[[dependencies.morefix]]
 modId="minecraft"
 type="required"
 versionRange="[1.21.1]"
 ordering="NONE"
 side="BOTH"
-[[dependencies.catwalk_orientation]]
+[[dependencies.morefix]]
 modId="createdeco"
 type="optional"
-versionRange="[2.1.3]"
+versionRange="[2.1.3,2.2)"
 ordering="AFTER"
 side="BOTH"
-[[dependencies.catwalk_orientation]]
+[[dependencies.morefix]]
 modId="create"
 type="required"
-versionRange="[6.0.10]"
+versionRange="[6.0.10,6.1)"
 ordering="AFTER"
 side="BOTH"
 [[mixins]]
-config="catwalk_orientation.mixins.json"
+config="morefix.mixins.json"
 
 
-[[dependencies.catwalk_orientation]]
+[[dependencies.morefix]]
 modId="copycats"
 type="optional"
 versionRange="[3.0.4,)"
@@ -46,16 +46,16 @@ side="BOTH"
 
 
 
-[[dependencies.catwalk_orientation]]
+[[dependencies.morefix]]
 modId="sable"
 type="optional"
-versionRange="[2.0.3]"
+versionRange="[2.0.3,2.1)"
 ordering="AFTER"
 side="BOTH"
-[[dependencies.catwalk_orientation]]
+[[dependencies.morefix]]
 modId="simulated"
 type="optional"
-versionRange="[1.3.0]"
+versionRange="[1.3.0,1.4)"
 ordering="AFTER"
 side="BOTH"
 

@@ -10,6 +10,7 @@ public final class OptionalMixinPlugin implements IMixinConfigPlugin {
     public String getRefMapperConfig(){return null;}
     public boolean shouldApplyMixin(String target,String mixin){
         String name=mixin.substring(mixin.lastIndexOf('.')+1);
+        if(name.startsWith("Ladder")&&!OptionalMods.deco())return false;
         if((name.startsWith("Catwalk")||name.startsWith("Railing")||name.startsWith("PipeSupport")||name.equals("StraightPipeSupportTransformMixin"))&&!OptionalMods.deco())return false;
         if((name.contains("Copycat")||name.startsWith("ForgematicaMaterial")||name.equals("ForgematicaBufferMixin"))&&!OptionalMods.copycats())return false;
         if(name.startsWith("Forgematica")&&!OptionalMods.loaded("forgematica"))return false;
