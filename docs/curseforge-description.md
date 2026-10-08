@@ -48,14 +48,14 @@ More building options, connected textures and compatibility fixes for Create.
   * Horizontal output shafts, synchronized movement and preserved docking.
   * Glued structures with paired docking ports automatically assemble into sublevels. Includes pulley movement and world/chunk reload fixes.
 
-![Gantry moving a docked sublevel with F3+B bounds](https://raw.githubusercontent.com/MontiSIk/create-morefix/main/docs/media/gantry-sublevel.gif)
+![Gantry moving a docked sublevel with F3+B bounds](https://raw.githubusercontent.com/MontiSIk/create-morefix/main/docs/media/gantry-sublevel-transparent.gif)
 
 * **Wireless links and schematics**
   * Copycat transmitter/receiver shells retain materials, frequencies and signals, including on sublevels; the receiver lamp continues switching.
   * Coatings appear in Create/Forgematica previews and material lists. Server pasting preserves them with **place + clone** or **place + data modify**, subject to command permissions. **None** does not transfer coatings.
   * Includes fixes for pasted conveyors and falling blocks.
 
-![Copycat-covered wireless transmitter and working receiver](https://raw.githubusercontent.com/MontiSIk/create-morefix/main/docs/media/wireless-copycat.gif)
+![Copycat-covered wireless transmitter and working receiver](https://raw.githubusercontent.com/MontiSIk/create-morefix/main/docs/media/wireless-copycat-transparent.gif)
 
 ---
 
@@ -72,4 +72,5 @@ Tested in isolated worlds with grouped checks for placement, rendering, saved da
 By **MontiSIk**, developed with assistance from **OpenAI Codex**. Code licensed under **MIT**; Create and compatible add-ons belong to their respective authors.
 
 **[💬 Message me on Discord](https://discord.com/users/307551324956917760)** · **[GitHub — source, license and issues](https://github.com/MontiSIk/create-morefix)**
+
 
