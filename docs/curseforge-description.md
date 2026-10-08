@@ -4,61 +4,55 @@ More building options, connected textures and compatibility fixes for Create.
 
 ## Current list of features
 
-*   **Connected blocks and Ctrl textures**
-    *   Connect casings, metals, stone, light blocks, glass and panes with **Ctrl** (configurable key), including Copycat coatings.
-    *   Combine ordinary and connected placement to keep your own patterns.
+* **Connected textures**
+  * Hold **Ctrl** to connect block textures and Copycat coatings. Mix connected and ordinary blocks to create patterns; the key is configurable.
 
 ![Ordinary, connected and mixed texture patterns](https://raw.githubusercontent.com/MontiSIk/create-morefix/main/docs/media/blocks-ctrl-patterns.gif)
 
-*   **Ladders with supports or railings**
-    *   Vanilla, Create, Deco and Copycat ladders accept upright supports **or** railings; climbing and coatings are preserved.
-    *   Add matching railings on the left, right and back. One ladder uses one railing material; support wedges are excluded.
-    *   **Ctrl + wrench + right-click** removes attachments and returns their items. Metal seams and overlapping surfaces have been corrected.
+* **Ladders with attachments**
+  * Add upright supports **or** matching railings on the left, right and back. Works with vanilla, Create, Deco and Copycat ladders; no support wedges.
+  * **Ctrl + wrench + right-click** removes attachments and returns their items. Climbing, coatings and clean metal joins are preserved.
 
 ![Ladder and attachment variants](https://raw.githubusercontent.com/MontiSIk/create-morefix/main/docs/media/ladders-supports-railings.gif)
 
-*   **Catwalks with independent railings**
-    *   Six placement directions; built-in railings can use different materials from the catwalk.
-    *   Wrench and Create rotation-menu changes carry the railings with the plate; materials survive saves, schematics and refunds.
+* **Catwalks with separate railing materials**
+  * Place catwalks in six directions and choose railing materials separately. Rotate the whole assembly with a wrench or Create's rotation menu.
 
 ![Catwalk rotating with independently changing railing materials](https://raw.githubusercontent.com/MontiSIk/create-morefix/main/docs/media/catwalk-rotation-independent.gif)
 
-*   **Pipes inside supports**
-    *   Create, Encased and Copycat pipes share block space with Deco supports, preserving fluid transport and coatings.
-    *   Place either part first; the wrench and rotation menu rotate the support independently.
+* **Pipes inside supports**
+  * Combine Create, Encased or Copycat pipes with Deco supports. Place either part first and rotate the support independently; pipes keep working.
 
 ![Pipes inside vertical and horizontal supports](https://raw.githubusercontent.com/MontiSIk/create-morefix/main/docs/media/pipes-supports-transparent.gif)
 
-*   **Fluid tanks and item vaults**
-    *   Horizontal Create/Encased tanks and boilers, plus vertical item vaults.
-    *   Easier structure extension, with corrected connections and shading.
+* **Tanks and vaults**
+  * Build horizontal tanks and boilers, or vertical item vaults, with corrected connections and shading.
 
 ![Horizontal and vertical storage](https://raw.githubusercontent.com/MontiSIk/create-morefix/main/docs/media/tanks-vaults-transparent.gif)
 
-*   **Locomotive boilers**
-    *   Vertical placement for all 68 Steam 'n' Rails variants, adjustable through Create's rotation menu.
+* **Locomotive boilers**
+  * All **68 Steam 'n' Rails variants** support vertical placement and Create's rotation menu.
 
 ![Vertical locomotive boilers](https://raw.githubusercontent.com/MontiSIk/create-morefix/main/docs/media/locomotive-boilers-transparent.gif)
 
-*   **Copycat compatibility**
-    
-    *   All 45 shapes accept bars and grates, including panel variants.
-    *   Fixes initial rendering, invisible small parts, texture-atlas edges and unwanted glass faces.
-*   **Gantry carriages and sublevels**
-    
-    *   Horizontal output shafts, synchronized movement and preserved docking.
-    *   Glued structures with paired docking ports automatically assemble into sublevels. Includes pulley movement and world/chunk reload fixes.
+* **Copycat compatibility**
+  * Use bars and grates, including panel variants, in all **45 shapes**, with corrected textures and small-part visibility.
+
+* **Moving docked structures**
+  * Use horizontal carriage shafts and move docked structures together. Glued structures with paired docking ports assemble automatically; docking survives pulley motion and world/chunk reloads.
 
 ![Gantry moving a docked sublevel with F3+B bounds](https://raw.githubusercontent.com/MontiSIk/create-morefix/main/docs/media/gantry-sublevel-transparent.gif)
 
-*   **Wireless links and schematics**
-    *   Copycat transmitter/receiver shells retain materials, frequencies and signals, including on sublevels; the receiver lamp continues switching.
-    *   Coatings appear in Create/Forgematica previews and material lists. Server pasting preserves them with **place + clone** or **place + data modify**, subject to command permissions. **None** does not transfer coatings.
-    *   Includes fixes for pasted conveyors and falling blocks.
+* **Covered wireless links**
+  * Cover transmitters and receivers with Copycat materials while keeping frequencies and signals, including on moving structures.
 
 ![Copycat-covered wireless transmitter and working receiver](https://raw.githubusercontent.com/MontiSIk/create-morefix/main/docs/media/wireless-copycat-transparent.gif)
 
-***
+* **Schematics and pasting**
+  * Copycat coatings appear in schematics, previews and material lists. Fixes pasted conveyors and falling blocks.
+  * On servers, use **place + clone** or **place + data modify** with command permissions; **None** omits coatings.
+
+---
 
 **Minecraft 1.21.1 · NeoForge 21.1.228+ · Java 21 · Create 6.0.10**
 
@@ -69,3 +63,4 @@ Tested in isolated worlds with grouped checks for placement, rendering, saved da
 By **MontiSIk**, developed with assistance from **OpenAI Codex**. Code licensed under **MIT**; Create and compatible add-ons belong to their respective authors.
 
 **[💬 Message me on Discord](https://discord.com/users/307551324956917760)** · **[GitHub — source, license and issues](https://github.com/MontiSIk/create-morefix)**
+
