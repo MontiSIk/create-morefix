@@ -27,18 +27,18 @@ More building options, connected textures and compatibility fixes for Create.
   * Create, Encased and Copycat pipes share block space with Deco supports, preserving fluid transport and coatings.
   * Place either part first; the wrench and rotation menu rotate the support independently.
 
-![Pipes inside vertical and horizontal supports](https://raw.githubusercontent.com/MontiSIk/create-morefix/main/docs/media/pipes-horizontal-supports.png)
+![Pipes inside vertical and horizontal supports](https://raw.githubusercontent.com/MontiSIk/create-morefix/main/docs/media/pipes-supports-transparent.gif)
 
 * **Fluid tanks and item vaults**
   * Horizontal Create/Encased tanks and boilers, plus vertical item vaults.
   * Easier structure extension, with corrected connections and shading.
 
-![Horizontal and vertical storage](https://raw.githubusercontent.com/MontiSIk/create-morefix/main/docs/media/tanks-vaults-showcase.png)
+![Horizontal and vertical storage](https://raw.githubusercontent.com/MontiSIk/create-morefix/main/docs/media/tanks-vaults-transparent.gif)
 
 * **Locomotive boilers**
   * Vertical placement for all 68 Steam 'n' Rails variants, adjustable through Create's rotation menu.
 
-![Vertical locomotive boilers](https://raw.githubusercontent.com/MontiSIk/create-morefix/main/docs/media/morefix-showcase-2.png)
+![Vertical locomotive boilers](https://raw.githubusercontent.com/MontiSIk/create-morefix/main/docs/media/locomotive-boilers-transparent.gif)
 
 * **Copycat compatibility**
   * All 45 shapes accept bars and grates, including panel variants.
@@ -72,3 +72,4 @@ Tested in isolated worlds with grouped checks for placement, rendering, saved da
 By **MontiSIk**, developed with assistance from **OpenAI Codex**. Code licensed under **MIT**; Create and compatible add-ons belong to their respective authors.
 
 **[💬 Message me on Discord](https://discord.com/users/307551324956917760)** · **[GitHub — source, license and issues](https://github.com/MontiSIk/create-morefix)**
+
