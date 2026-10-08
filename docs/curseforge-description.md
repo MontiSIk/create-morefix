@@ -1,7 +1,5 @@
 # Create: MoreFix
 
-More building options, connected textures and compatibility fixes for Create.
-
 ## Current list of features
 
 * **Connected textures**
