@@ -3,52 +3,53 @@
 ## Current list of features
 
 * **Connected textures**
-  * Hold **Ctrl** to connect block textures and Copycat coatings. Mix connected and ordinary blocks to create patterns; the key is configurable.
+  * Hold **Ctrl** to connect textures on blocks and Copycat coatings.
 
 ![Ordinary, connected and mixed texture patterns](https://raw.githubusercontent.com/MontiSIk/create-morefix/main/docs/media/blocks-ctrl-patterns.gif)
 
 * **Ladders with attachments**
-  * Add upright supports **or** matching railings on the left, right and back. Works with vanilla, Create, Deco and Copycat ladders; no support wedges.
-  * **Ctrl + wrench + right-click** removes attachments and returns their items. Climbing, coatings and clean metal joins are preserved.
+  * Add a vertical support or matching railings to a ladder.
+  * Remove them with **Ctrl + wrench + right-click**.
 
 ![Ladder and attachment variants](https://raw.githubusercontent.com/MontiSIk/create-morefix/main/docs/media/ladders-supports-railings.gif)
 
 * **Catwalks with separate railing materials**
-  * Place catwalks in six directions and choose railing materials separately. Rotate the whole assembly with a wrench or Create's rotation menu.
+  * Rotate catwalks in six directions and choose railing materials independently.
 
 ![Catwalk rotating with independently changing railing materials](https://raw.githubusercontent.com/MontiSIk/create-morefix/main/docs/media/catwalk-rotation-independent.gif)
 
 * **Pipes inside supports**
-  * Combine Create, Encased or Copycat pipes with Deco supports. Place either part first and rotate the support independently; pipes keep working.
+  * Fit working pipes inside supports and rotate the supports independently.
 
 ![Pipes inside vertical and horizontal supports](https://raw.githubusercontent.com/MontiSIk/create-morefix/main/docs/media/pipes-supports-transparent.gif)
 
 * **Tanks and vaults**
-  * Build horizontal tanks and boilers, or vertical item vaults, with corrected connections and shading.
+  * Place tanks and boilers horizontally, and item vaults vertically.
 
 ![Horizontal and vertical storage](https://raw.githubusercontent.com/MontiSIk/create-morefix/main/docs/media/tanks-vaults-transparent.gif)
 
 * **Locomotive boilers**
-  * All **68 Steam 'n' Rails variants** support vertical placement and Create's rotation menu.
+  * Place all **68 Steam 'n' Rails boiler variants** vertically.
 
 ![Vertical locomotive boilers](https://raw.githubusercontent.com/MontiSIk/create-morefix/main/docs/media/locomotive-boilers-transparent.gif)
 
 * **Copycat compatibility**
-  * Use bars and grates, including panel variants, in all **45 shapes**, with corrected textures and small-part visibility.
+  * Use bars and grates as materials for all **45 Copycat shapes**.
 
 * **Moving docked structures**
-  * Use horizontal carriage shafts and move docked structures together. Glued structures with paired docking ports assemble automatically; docking survives pulley motion and world/chunk reloads.
+  * Move docked structures together, with automatic assembly and stable connections.
+  * Carriages support horizontal output shafts.
 
 ![Gantry moving a docked sublevel with F3+B bounds](https://raw.githubusercontent.com/MontiSIk/create-morefix/main/docs/media/gantry-sublevel-transparent.gif)
 
 * **Covered wireless links**
-  * Cover transmitters and receivers with Copycat materials while keeping frequencies and signals, including on moving structures.
+  * Cover wireless links with Copycat materials while keeping their signals.
 
 ![Copycat-covered wireless transmitter and working receiver](https://raw.githubusercontent.com/MontiSIk/create-morefix/main/docs/media/wireless-copycat-transparent.gif)
 
 * **Schematics and pasting**
-  * Copycat coatings appear in schematics, previews and material lists. Fixes pasted conveyors and falling blocks.
-  * On servers, use **place + clone** or **place + data modify** with command permissions; **None** omits coatings.
+  * Preserves Copycat materials and fixes pasted conveyors and falling blocks.
+  * Server paste: **place + clone** or **place + data modify**, with command permissions.
 
 ---
 
